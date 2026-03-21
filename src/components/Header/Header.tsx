@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Header() {
   return (
     <header className="bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400 text-slate-900 px-3 py-4 shadow-md shadow-orange-200/80 sm:px-4">
@@ -5,12 +7,12 @@ function Header() {
         <h1 className="text-lg font-extrabold sm:text-xl"> A Lojinha (❁´◡`❁)</h1>
 
         <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-5">
-          <a href="#" className="hover:text-rose-700 transition-colors">
-            Início
-          </a>
-          <a href="#" className="hover:text-rose-700 transition-colors">
-            Produtos
-          </a>
+          <Link to="/" className="hover:text-rose-700 transition-colors">
+            Pagina Inicial
+          </Link>
+          <Link to="/" className="hover:text-rose-700 transition-colors">
+            Nossos Produtos
+          </Link>
           <a
             href="#"
             aria-label="Carrinho"

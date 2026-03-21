@@ -1,4 +1,5 @@
 import type { Product } from "../../types/Product"
+import { Link } from "react-router-dom"
 
 interface ProductCardProps {
   readonly product: Product
@@ -6,7 +7,10 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="h-full w-full rounded-2xl border border-orange-100 bg-white/90 p-4 shadow-md shadow-orange-100/70 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-rose-100">
+    <Link
+      to={`/product/${product.id}`}
+      className="block h-full w-full rounded-2xl border border-orange-100 bg-white/90 p-4 shadow-md shadow-orange-100/70 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-rose-100"
+    >
 
       <img
         src={product.image}
@@ -25,7 +29,7 @@ function ProductCard({ product }: ProductCardProps) {
         })}
       </p>
 
-    </div>
+    </Link>
   )
 }
 
