@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import ProductCard from "../../components/ProductCard/ProductCard"
 import type { Product } from "../../types/Product"
+import banner from "../../figures/Gemini_Generated_Image_jrauk6jrauk6jrau.png"
 
 function Home() {
   const [products, setProducts] = useState<Product[]>([])
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
 
   const categories = [
     "all",
@@ -21,17 +23,34 @@ function Home() {
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Não foi possível carregar os produtos.")
+        }
+        return res.json()
+      })
       .then((data: Product[]) => {
         setProducts(data)
+        setLoading(false)
+      })
+      .catch(() => {
+        setError("Não foi possível carregar os produtos. Tente novamente mais tarde.")
         setLoading(false)
       })
   }, [])
 
   if (loading) {
     return (
-      <div className="mt-10 w-full px-3 text-center text-lg font-semibold text-orange-700 sm:px-4">
+      <div className="mt-10 w-full px-3 text-center text-lg font-semibold text-amber-300 sm:px-4">
         Carregando produtos...
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="mt-10 w-full px-3 text-center sm:px-4">
+        <p className="text-lg font-semibold text-red-400">{error}</p>
       </div>
     )
   }
@@ -39,41 +58,39 @@ function Home() {
   return (
     <main className="w-full px-3 py-6 sm:px-4">
 
-      <h2 className="mb-6 text-2xl font-extrabold text-orange-700 sm:text-3xl">
-        Produtos
-      </h2>
+      <img
+        src={banner}
+        alt="Super Promoção de Aniversário - até 40% de desconto"
+        className="mb-6 w-full rounded-2xl object-cover shadow-lg shadow-black/40"
+      />
 
-      <div className="mb-6 flex flex-col gap-2 sm:max-w-xs">
-        <select
-          id="category-filter"
-          value={selectedCategory}
-          onChange={event => setSelectedCategory(event.target.value)}
-          className="rounded-lg border border-orange-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-200"
-        >
-          <option value="all">Todas as categorias</option>
-          {categories
-            .filter(category => category !== "all")
-            .map(category => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-        </select>
+      <div className="mb-6 flex flex-wrap gap-2">
+        {categories.map(category => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`rounded-full border px-4 py-1.5 text-sm font-semibold capitalize transition active:scale-95 ${
+              selectedCategory === category
+                ? "border-amber-400 bg-amber-400 text-stone-900"
+                : "border-amber-400/40 bg-stone-900/80 text-amber-100 hover:border-amber-400/70 hover:bg-stone-900"
+            }`}
+          >
+            {category === "all" ? "Todas" : category}
+          </button>
+        ))}
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-
         {filteredProducts.map(product => (
           <ProductCard
             key={product.id}
             product={product}
           />
         ))}
-
       </div>
 
       {!filteredProducts.length && (
-        <p className="mt-6 text-sm font-semibold text-rose-700">
+        <p className="mt-6 text-sm font-semibold text-amber-300">
           Nenhum produto encontrado para a categoria selecionada.
         </p>
       )}
