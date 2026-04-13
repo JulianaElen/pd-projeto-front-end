@@ -27,3 +27,5 @@ npm run dev
 ## Imagens
 
 Todas as imagens são provenientes da API ou foram geradas por IA (identificadas com o símbolo correspondente).
+
+O código foi desenvolvido no VSCode, aproveitando as sugestões Inline do editor para aprimorar o projeto.
