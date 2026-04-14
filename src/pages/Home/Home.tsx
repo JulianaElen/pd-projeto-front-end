@@ -41,7 +41,7 @@ function Home() {
 
   if (loading) {
     return (
-      <div className="mt-10 w-full px-3 text-center text-lg font-semibold text-amber-300 sm:px-4">
+      <div className="mt-10 w-full px-3 text-center text-lg font-semibold text-zinc-400 sm:px-4">
         Carregando produtos...
       </div>
     )
@@ -61,7 +61,7 @@ function Home() {
       <img
         src={banner}
         alt="Super Promoção de Aniversário - até 40% de desconto"
-        className="mb-6 w-full rounded-2xl object-cover shadow-lg shadow-black/40"
+        className="mb-6 w-full rounded-2xl object-cover shadow-md shadow-black/40"
       />
 
       <div className="mb-6 flex flex-wrap gap-2">
@@ -69,10 +69,10 @@ function Home() {
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`rounded-full border px-4 py-1.5 text-sm font-semibold capitalize transition active:scale-95 ${
+            className={`rounded-full border px-4 py-1.5 text-sm font-medium capitalize transition active:scale-95 ${
               selectedCategory === category
-                ? "border-amber-400 bg-amber-400 text-stone-900"
-                : "border-amber-400/40 bg-stone-900/80 text-amber-100 hover:border-amber-400/70 hover:bg-stone-900"
+                ? "border-red-800 bg-red-900 text-white"
+                : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100"
             }`}
           >
             {category === "all" ? "Todas" : category}
@@ -90,7 +90,7 @@ function Home() {
       </div>
 
       {!filteredProducts.length && (
-        <p className="mt-6 text-sm font-semibold text-amber-300">
+        <p className="mt-6 text-sm font-semibold text-zinc-400">
           Nenhum produto encontrado para a categoria selecionada.
         </p>
       )}

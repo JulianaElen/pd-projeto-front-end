@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply min-h-screen text-amber-50;
+    @apply min-h-screen text-zinc-100;
     font-family: 'Inter', sans-serif;
   }
 

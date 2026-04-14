@@ -6,20 +6,20 @@ function Header() {
   const { totalItems } = useCart()
 
   return (
-    <header className="bg-black/80 backdrop-blur-xl border-b border-amber-400/50 px-3 py-4 shadow-lg sm:px-4">
+    <header className="bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-800 px-3 py-4 shadow-sm sm:px-4">
       <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link to="/">
           <img src={logo} alt="A Lojinha" className="h-10 w-auto" />
         </Link>
 
         <nav aria-label="Menu principal" className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-5">
-          <Link to="/" className="text-amber-100 hover:text-amber-300 transition-colors">
+          <Link to="/" className="text-zinc-300 hover:text-white transition-colors">
             Inicio
           </Link>
           <Link
             to="/cart"
             aria-label="Carrinho"
-            className="relative flex items-center gap-2 rounded-md border border-amber-400/70 bg-amber-400/30 px-3 py-1.5 text-amber-100 hover:bg-amber-400/50 transition-colors"
+            className="relative flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-zinc-200 hover:bg-zinc-700 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ function Header() {
             </svg>
             <span className="leading-none">Carrinho</span>
             {totalItems > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-amber-400 text-xs font-bold text-stone-900">
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-800 text-xs font-bold text-white">
                 {totalItems > 99 ? "99+" : totalItems}
               </span>
             )}

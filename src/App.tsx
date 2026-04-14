@@ -4,20 +4,10 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails"
 import Cart from "./pages/Cart/Cart"
 import { Route, Routes } from "react-router-dom"
 import { CartProvider } from "./context/CartContext"
-import siteBg from "./figures/Gemini_Generated_Image_ddo63lddo63lddo6.png"
-
 function App() {
   return (
     <CartProvider>
-      <div
-        className="min-h-screen"
-        style={{
-          backgroundImage: `url(${siteBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      >
+      <div className="min-h-screen bg-zinc-950">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

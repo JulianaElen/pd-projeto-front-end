@@ -42,14 +42,14 @@ function Cart() {
   if (cartItems.length === 0) {
     return (
       <main className="w-full px-3 py-6 sm:px-4">
-        <h2 className="mb-6 text-2xl font-extrabold text-amber-300 sm:text-3xl">
+        <h2 className="mb-6 text-2xl font-extrabold text-zinc-100 sm:text-3xl">
           Carrinho
         </h2>
-        <div className="flex flex-col items-center gap-3 rounded-2xl border border-amber-400/30 bg-stone-900/85 p-8 text-center shadow-md shadow-black/40">
+        <div className="flex flex-col items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-8 text-center shadow-sm">
           <span className="text-4xl">🛒</span>
-          <p className="text-lg font-semibold text-amber-100">Seu carrinho está vazio</p>
-          <p className="text-sm text-amber-100/60">Adicione produtos para continuar</p>
-          <Link to="/" className="mt-2 rounded-lg bg-amber-400 px-4 py-2 text-sm font-bold text-stone-900 transition hover:bg-amber-300">
+          <p className="text-lg font-semibold text-zinc-100">Seu carrinho está vazio</p>
+          <p className="text-sm text-zinc-500">Adicione produtos para continuar</p>
+          <Link to="/" className="mt-2 rounded-lg bg-red-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-red-800">
             Ver produtos
           </Link>
         </div>
@@ -59,7 +59,7 @@ function Cart() {
 
   return (
     <main className="w-full px-3 py-6 sm:px-4">
-      <h2 className="mb-6 text-2xl font-extrabold text-amber-300 sm:text-3xl">
+      <h2 className="mb-6 text-2xl font-extrabold text-zinc-100 sm:text-3xl">
         Carrinho
       </h2>
 
@@ -67,7 +67,7 @@ function Cart() {
         {cartItems.map(item => (
           <li
             key={item.id}
-            className="flex items-center gap-4 rounded-2xl border border-amber-400/40 bg-stone-900/85 p-4 shadow-md shadow-black/40"
+            className="flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900 p-4 shadow-sm"
           >
             <img
               src={item.image}
@@ -76,11 +76,11 @@ function Cart() {
             />
 
             <div className="flex flex-1 flex-col gap-1">
-              <p className="text-sm font-semibold text-amber-100 line-clamp-2">{item.title}</p>
-              <p className="text-sm text-amber-100/60">
-                Quantidade: <span className="font-bold text-amber-100">{item.quantity}</span>
+              <p className="text-sm font-semibold text-zinc-100 line-clamp-2">{item.title}</p>
+              <p className="text-sm text-zinc-500">
+                Quantidade: <span className="font-bold text-zinc-300">{item.quantity}</span>
               </p>
-              <p className="text-sm font-extrabold text-amber-400">
+              <p className="text-sm font-extrabold text-red-400">
                 {(item.price * item.quantity).toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "BRL"
@@ -90,7 +90,7 @@ function Cart() {
 
             <button
               onClick={() => removeFromCart(item.id)}
-              className="rounded-lg border border-red-400/40 bg-red-400/10 px-3 py-1.5 text-sm font-semibold text-red-400 transition hover:bg-red-400/20"
+              className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-sm font-semibold text-red-400 transition hover:bg-red-500/20"
             >
               Remover
             </button>
@@ -98,10 +98,10 @@ function Cart() {
         ))}
       </ul>
 
-      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-400/40 bg-stone-900/85 p-5 shadow-lg shadow-black/40 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xl font-extrabold text-amber-100">
+      <div className="mt-8 flex flex-col gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-xl font-extrabold text-zinc-100">
           Total:{" "}
-          <span className="text-amber-400">
+          <span className="text-red-400">
             {totalPrice.toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL"
@@ -112,13 +112,13 @@ function Cart() {
         <div className="flex gap-3">
           <button
             onClick={clearCart}
-            className="rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-400/20"
+            className="rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-700"
           >
             Limpar carrinho
           </button>
           <button
             onClick={() => setShowModal(true)}
-            className="rounded-lg bg-amber-400 px-4 py-2 text-sm font-bold text-stone-900 shadow-sm transition hover:bg-amber-300 active:scale-95"
+            className="rounded-lg bg-red-900 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-red-800 active:scale-95"
           >
             Finalizar compra
           </button>
@@ -127,20 +127,20 @@ function Cart() {
 
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-          <div className="w-full max-w-md rounded-2xl border border-amber-400/30 bg-stone-900 p-6 shadow-2xl shadow-black/60">
+          <div className="w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-2xl">
             {success ? (
               <div className="flex flex-col items-center gap-3 py-6 text-center">
                 <span className="text-5xl">✅</span>
-                <p className="text-xl font-extrabold text-amber-300">Compra realizada!</p>
-                <p className="text-sm text-amber-100/60">Obrigado pela sua compra.</p>
+                <p className="text-xl font-extrabold text-zinc-100">Compra realizada!</p>
+                <p className="text-sm text-zinc-500">Obrigado pela sua compra.</p>
               </div>
             ) : (
               <>
                 <div className="mb-5 flex items-center justify-between">
-                  <h3 className="text-lg font-extrabold text-amber-300">Dados do cartão</h3>
+                  <h3 className="text-lg font-extrabold text-zinc-100">Dados do cartão</h3>
                   <button
                     onClick={() => setShowModal(false)}
-                    className="text-amber-100/50 transition hover:text-amber-100"
+                    className="text-zinc-500 transition hover:text-zinc-300"
                   >
                     ✕
                   </button>
@@ -148,69 +148,69 @@ function Cart() {
 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-amber-100/70">Número do cartão</label>
+                    <label className="text-xs font-semibold text-zinc-400">Número do cartão</label>
                     <input
                       type="text"
                       inputMode="numeric"
                       placeholder="0000 0000 0000 0000"
                       value={cardNumber}
                       onChange={e => setCardNumber(formatCardNumber(e.target.value))}
-                      className="rounded-lg border border-amber-400/30 bg-stone-800 px-3 py-2 text-sm text-amber-100 placeholder-amber-100/30 outline-none focus:border-amber-400"
+                      className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-red-800"
                     />
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-amber-100/70">Nome no cartão</label>
+                    <label className="text-xs font-semibold text-zinc-400">Nome no cartão</label>
                     <input
                       type="text"
                       placeholder="NOME SOBRENOME"
                       value={cardName}
                       onChange={e => setCardName(e.target.value.toUpperCase())}
-                      className="rounded-lg border border-amber-400/30 bg-stone-800 px-3 py-2 text-sm text-amber-100 placeholder-amber-100/30 outline-none focus:border-amber-400"
+                      className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-red-800"
                     />
                   </div>
 
                   <div className="flex gap-3">
                     <div className="flex flex-1 flex-col gap-1">
-                      <label className="text-xs font-semibold text-amber-100/70">Validade</label>
+                      <label className="text-xs font-semibold text-zinc-400">Validade</label>
                       <input
                         type="text"
                         inputMode="numeric"
                         placeholder="MM/AA"
                         value={expiry}
                         onChange={e => setExpiry(formatExpiry(e.target.value))}
-                        className="rounded-lg border border-amber-400/30 bg-stone-800 px-3 py-2 text-sm text-amber-100 placeholder-amber-100/30 outline-none focus:border-amber-400"
+                        className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-red-800"
                       />
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <label className="text-xs font-semibold text-amber-100/70">CVV</label>
+                      <label className="text-xs font-semibold text-zinc-400">CVV</label>
                       <input
                         type="text"
                         inputMode="numeric"
                         placeholder="123"
                         value={cvv}
                         onChange={e => setCvv(formatCVV(e.target.value))}
-                        className="w-20 rounded-lg border border-amber-400/30 bg-stone-800 px-3 py-2 text-sm text-amber-100 placeholder-amber-100/30 outline-none focus:border-amber-400"
+                        className="w-20 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-red-800"
                       />
                     </div>
                   </div>
 
-                  <p className="text-[10px] leading-tight text-amber-100/40">
+                  <p className="text-[10px] leading-tight text-zinc-600">
                     *Não nos responsabilizamos por cartões clonados e dados inseridos indevidamente neste formulário. Insira suas informações por sua conta e risco.
                   </p>
 
                   <div className="mt-1 flex items-center justify-between">
-                    <p className="text-sm font-bold text-amber-100">
+                    <p className="text-sm font-bold text-zinc-100">
                       Total:{" "}
-                      <span className="text-amber-400">
+                      <span className="text-red-400">
                         {totalPrice.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                       </span>
                     </p>
                     <button
                       onClick={handleFinalize}
                       disabled={!isFormValid}
-                      className="rounded-lg bg-amber-400 px-5 py-2 text-sm font-bold text-stone-900 transition hover:bg-amber-300 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+                      className="rounded-lg bg-red-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-red-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Pagar
                     </button>
