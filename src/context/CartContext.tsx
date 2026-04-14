@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useMemo } from "react"
 import type { ReactNode } from "react"
 import type { CartItem, Product } from "../types/Product"
 
@@ -13,7 +13,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | null>(null)
 
-export function CartProvider({ children }: { children: ReactNode }) {
+export function CartProvider({ children }: { readonly children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   function addToCart(product: Product) {
@@ -41,8 +41,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
+  const value = useMemo(() => ({ cartItems, addToCart, removeFromCart, clearCart, totalItems, totalPrice }), [cartItems, totalItems, totalPrice])
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, totalItems, totalPrice }}>
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   )

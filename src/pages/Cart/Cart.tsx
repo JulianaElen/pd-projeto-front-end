@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useCart } from "../../context/CartContext"
 
 function formatCardNumber(value: string) {
-  return value.replaceAll(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim()
+  return value.replaceAll(/\D/g, "").slice(0, 16).replaceAll(/(.{4})/g, "$1 ").trim()
 }
 
 function formatExpiry(value: string) {
@@ -148,8 +148,9 @@ function Cart() {
 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-zinc-400">Número do cartão</label>
+                    <label htmlFor="cardNumber" className="text-xs font-semibold text-zinc-400">Número do cartão</label>
                     <input
+                      id="cardNumber"
                       type="text"
                       inputMode="numeric"
                       placeholder="0000 0000 0000 0000"
@@ -160,8 +161,9 @@ function Cart() {
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs font-semibold text-zinc-400">Nome no cartão</label>
+                    <label htmlFor="cardName" className="text-xs font-semibold text-zinc-400">Nome no cartão</label>
                     <input
+                      id="cardName"
                       type="text"
                       placeholder="NOME SOBRENOME"
                       value={cardName}
@@ -172,8 +174,9 @@ function Cart() {
 
                   <div className="flex gap-3">
                     <div className="flex flex-1 flex-col gap-1">
-                      <label className="text-xs font-semibold text-zinc-400">Validade</label>
+                      <label htmlFor="expiry" className="text-xs font-semibold text-zinc-400">Validade</label>
                       <input
+                        id="expiry"
                         type="text"
                         inputMode="numeric"
                         placeholder="MM/AA"
@@ -184,8 +187,9 @@ function Cart() {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                      <label className="text-xs font-semibold text-zinc-400">CVV</label>
+                      <label htmlFor="cvv" className="text-xs font-semibold text-zinc-400">CVV</label>
                       <input
+                        id="cvv"
                         type="text"
                         inputMode="numeric"
                         placeholder="123"
