@@ -1,10 +1,15 @@
 # Catálogo de Produtos
 
-Aplicação web de catálogo de produtos desenvolvida com React, TypeScript e Tailwind CSS.
+Aplicação web de catálogo de produtos ("A Lojinha") desenvolvida com React, TypeScript e
+Tailwind CSS, consumindo produtos de uma API.
+
+🔗 **Acesse:** [projeto-front-end-rust.vercel.app](https://projeto-front-end-rust.vercel.app)
+
+![Página inicial](docs/home.jpg)
 
 ## Funcionalidades
 
-- Listagem de produtos na página inicial
+- Listagem de produtos na página inicial, com filtro por categoria
 - Página de detalhes do produto
 - Carrinho de compras
 - Navegação entre páginas com React Router
